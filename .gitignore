@@ -1,0 +1,5 @@
+.idea/
+.ipynb
+__pycache__/
+v1/
+data/
