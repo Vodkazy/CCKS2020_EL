@@ -13,7 +13,7 @@ from EntityLinkingProcessor import EntityLinkingProcessor
 class EntityLinkingModel(pl.LightningModule):
     """实体链接模型"""
 
-    def __init__(self, max_length=384, batch_size=16, use_pickle=True):
+    def __init__(self, max_length=384, batch_size=32, use_pickle=True):
         super(EntityLinkingModel, self).__init__()
         # 输入最大长度
         self.max_length = max_length
@@ -99,7 +99,7 @@ class EntityLinkingModel(pl.LightningModule):
         return {'val_loss': val_loss, 'log': tensorboard_logs, 'progress_bar': tensorboard_logs}
 
     def configure_optimizers(self):
-        return torch.optim.Adam([p for p in self.parameters() if p.requires_grad], lr=2e-5, eps=1e-8)
+        return torch.optim.Adam([p for p in self.parameters() if p.requires_grad], lr=1e-5, eps=1e-8)
 
     def train_dataloader(self):
         return self.train_loader

@@ -13,7 +13,7 @@ from config import *
 
 class EntityTypingPredictor:
 
-    def __init__(self, ckpt_name, batch_size=16, use_pickle=True):
+    def __init__(self, ckpt_name, batch_size=8, use_pickle=True):
         self.ckpt_name = ckpt_name
         self.batch_size = batch_size
         self.use_pickle = use_pickle
@@ -41,7 +41,7 @@ class EntityTypingPredictor:
             checkpoint_path=CKPT_PATH + self.ckpt_name,
         )
         model.to(DEVICE)
-        model = nn.DataParallel(model)
+        # model = nn.DataParallel(model)
         model.eval()
 
         result_list = []

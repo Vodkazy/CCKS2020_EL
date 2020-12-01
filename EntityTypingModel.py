@@ -14,7 +14,7 @@ from config import *
 class EntityTypingModel(pl.LightningModule):
     """实体类型推断模型"""
 
-    def __init__(self, max_length=64, batch_size=16, use_pickle=True):
+    def __init__(self, max_length=64, batch_size=32, use_pickle=True):
         super(EntityTypingModel, self).__init__()
         # 输入最大长度
         self.max_length = max_length

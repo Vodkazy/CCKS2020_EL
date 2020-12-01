@@ -32,10 +32,21 @@ DEVICE = torch.device('cuda:0' if torch.cuda.is_available else 'cpu')
 
 # 预训练模型路径
 PRETRAINED_PATH = 'hfl/chinese_roberta_wwm_ext_pytorch/'
+
+# Pytorch-lightning路径
+PYTORCH_LIGHTNING_PATH = './pytorch-lightning-checkpoints/'
+if not os.path.exists(PYTORCH_LIGHTNING_PATH):
+    os.mkdir(PYTORCH_LIGHTNING_PATH)
+
 # 实体链接训练路径
-EL_SAVE_PATH = './pytorch-lightning-checkpoints/EntityLinking/'
+EL_SAVE_PATH = PYTORCH_LIGHTNING_PATH + 'EntityLinking/'
+if not os.path.exists(EL_SAVE_PATH):
+    os.mkdir(EL_SAVE_PATH)
+
 # 实体类别推断训练路径
-ET_SAVE_PATH = './pytorch-lightning-checkpoints/EntityTyping/'
+ET_SAVE_PATH = PYTORCH_LIGHTNING_PATH + 'EntityTyping/'
+if not os.path.exists(ET_SAVE_PATH):
+    os.mkdir(ET_SAVE_PATH)
 
 # 项目数据路径
 DATA_PATH = './data/'

@@ -40,7 +40,7 @@ class EntityLinkingPredictor:
             checkpoint_path=CKPT_PATH + self.ckpt_name,
         )
         model.to(DEVICE)
-        model = nn.DataParallel(model)
+        # model = nn.DataParallel(model)
         model.eval()
 
         result_list, logit_list = [], []

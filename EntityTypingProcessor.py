@@ -51,7 +51,7 @@ class EntityTypingProcessor(DataProcessor):
         return examples
 
     def create_dataloader(self, examples, tokenizer, max_length=64,
-                          shuffle=False, batch_size=16, use_pickle=False):
+                          shuffle=False, batch_size=32, use_pickle=False):
         pickle_name = 'ET_FEATURE_' + examples[0].guid.split('-')[0].upper() + '.pkl'
         if use_pickle:
             features = pd.read_pickle(PICKLE_PATH + pickle_name)
@@ -76,7 +76,7 @@ class EntityTypingProcessor(DataProcessor):
             dataset,
             shuffle=shuffle,
             batch_size=batch_size,
-            num_workers=6,
+            num_workers=4,
         )
         return dataloader
 
@@ -92,7 +92,7 @@ class EntityTypingProcessor(DataProcessor):
             tokenizer=tokenizer,
             max_length=max_length,
             shuffle=True,
-            batch_size=16,
+            batch_size=32,
             use_pickle=False,
         )
         self.create_dataloader(
@@ -100,7 +100,7 @@ class EntityTypingProcessor(DataProcessor):
             tokenizer=tokenizer,
             max_length=max_length,
             shuffle=False,
-            batch_size=16,
+            batch_size=32,
             use_pickle=False,
         )
         self.create_dataloader(
@@ -108,6 +108,6 @@ class EntityTypingProcessor(DataProcessor):
             tokenizer=tokenizer,
             max_length=max_length,
             shuffle=False,
-            batch_size=16,
+            batch_size=32,
             use_pickle=False,
         )

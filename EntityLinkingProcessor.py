@@ -51,7 +51,7 @@ class EntityLinkingProcessor(DataProcessor):
         return examples
 
     def create_dataloader(self, examples, tokenizer, max_length=384,
-                          shuffle=False, batch_size=16, use_pickle=False):
+                          shuffle=False, batch_size=32, use_pickle=False):
         pickle_name = 'EL_FEATURE_' + examples[0].guid.split('-')[0].upper() + '.pkl'
         if use_pickle:
             features = pd.read_pickle(PICKLE_PATH + pickle_name)
@@ -59,11 +59,10 @@ class EntityLinkingProcessor(DataProcessor):
             features = glue_convert_examples_to_features(
                 examples,
                 tokenizer,
-                label_list=self.get_labels(),
+                label_list=['0', '1'],
                 max_length=max_length,
                 output_mode='classification',
             )
-
             pd.to_pickle(features, PICKLE_PATH + pickle_name)
 
         dataset = torch.utils.data.TensorDataset(
@@ -77,7 +76,7 @@ class EntityLinkingProcessor(DataProcessor):
             dataset,
             shuffle=shuffle,
             batch_size=batch_size,
-            num_workers=6,
+            num_workers=4,
         )
         return dataloader
 
@@ -93,7 +92,7 @@ class EntityLinkingProcessor(DataProcessor):
             tokenizer=tokenizer,
             max_length=max_length,
             shuffle=True,
-            batch_size=16,
+            batch_size=32,
             use_pickle=False,
         )
         self.create_dataloader(
@@ -101,7 +100,7 @@ class EntityLinkingProcessor(DataProcessor):
             tokenizer=tokenizer,
             max_length=max_length,
             shuffle=False,
-            batch_size=16,
+            batch_size=32,
             use_pickle=False,
         )
         self.create_dataloader(
@@ -109,6 +108,6 @@ class EntityLinkingProcessor(DataProcessor):
             tokenizer=tokenizer,
             max_length=max_length,
             shuffle=False,
-            batch_size=16,
+            batch_size=32,
             use_pickle=False,
         )

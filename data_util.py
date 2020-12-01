@@ -42,11 +42,11 @@ def generate_feature_pickle():
 
 def train_entity_linking_model(ckpt_name):
     print("train_entity_linking_model .......")
-    model = EntityLinkingModel(max_length=384, batch_size=16)
+    model = EntityLinkingModel(max_length=384, batch_size=32)
     trainer = pl.Trainer(
-        max_epochs=5,
-        gpus=1,
+        max_epochs=10,
         distributed_backend='dp',
+        gpus=1,
         default_root_dir=EL_SAVE_PATH,
         profiler=True,
     )
@@ -56,11 +56,11 @@ def train_entity_linking_model(ckpt_name):
 
 def train_entity_typing_model(ckpt_name):
     print("train_entity_typing_model .......")
-    model = EntityTypingModel(max_length=64, batch_size=16)
+    model = EntityTypingModel(max_length=64, batch_size=32)
     trainer = pl.Trainer(
-        max_epochs=5,
-        gpus=1,
+        max_epochs=10,
         distributed_backend='dp',
+        gpus=1,
         default_root_dir=ET_SAVE_PATH,
         profiler=True,
     )

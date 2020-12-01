@@ -45,8 +45,8 @@ class DataFramePreprocessor:
 
                     num_negs = 0
                     for kbid in kbids:
-                        # if num_negs >= max_negs and kbid != data['kb_id']:
-                        #     continue
+                        if num_negs >= max_negs > 0 and kbid != data['kb_id']:
+                            continue
 
                         link_dict['text_id'].append(line['text_id'])
                         link_dict['entity'].append(entity)
